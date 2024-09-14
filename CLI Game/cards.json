@@ -1,0 +1,422 @@
+[
+    {
+        "name": "Ace",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            1,
+            11
+        ]
+    },
+    {
+        "name": "2",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            2
+        ]
+    },
+    {
+        "name": "3",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            3
+        ]
+    },
+    {
+        "name": "4",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            4
+        ]
+    },
+    {
+        "name": "5",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            5
+        ]
+    },
+    {
+        "name": "6",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            6
+        ]
+    },
+    {
+        "name": "7",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            7
+        ]
+    },
+    {
+        "name": "8",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            8
+        ]
+    },
+    {
+        "name": "9",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            9
+        ]
+    },
+    {
+        "name": "10",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Jack",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Queen",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "King",
+        "suit": "club",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Ace",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            1,
+            11
+        ]
+    },
+    {
+        "name": "2",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            2
+        ]
+    },
+    {
+        "name": "3",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            3
+        ]
+    },
+    {
+        "name": "4",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            4
+        ]
+    },
+    {
+        "name": "5",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            5
+        ]
+    },
+    {
+        "name": "6",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            6
+        ]
+    },
+    {
+        "name": "7",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            7
+        ]
+    },
+    {
+        "name": "8",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            8
+        ]
+    },
+    {
+        "name": "9",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            9
+        ]
+    },
+    {
+        "name": "10",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Jack",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Queen",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "King",
+        "suit": "diamond",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Ace",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            1,
+            11
+        ]
+    },
+    {
+        "name": "2",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            2
+        ]
+    },
+    {
+        "name": "3",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            3
+        ]
+    },
+    {
+        "name": "4",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            4
+        ]
+    },
+    {
+        "name": "5",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            5
+        ]
+    },
+    {
+        "name": "6",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            6
+        ]
+    },
+    {
+        "name": "7",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            7
+        ]
+    },
+    {
+        "name": "8",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            8
+        ]
+    },
+    {
+        "name": "9",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            9
+        ]
+    },
+    {
+        "name": "10",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Jack",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Queen",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "King",
+        "suit": "heart",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Ace",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            1,
+            11
+        ]
+    },
+    {
+        "name": "2",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            2
+        ]
+    },
+    {
+        "name": "3",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            3
+        ]
+    },
+    {
+        "name": "4",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            4
+        ]
+    },
+    {
+        "name": "5",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            5
+        ]
+    },
+    {
+        "name": "6",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            6
+        ]
+    },
+    {
+        "name": "7",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            7
+        ]
+    },
+    {
+        "name": "8",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            8
+        ]
+    },
+    {
+        "name": "9",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            9
+        ]
+    },
+    {
+        "name": "10",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Jack",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "Queen",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            10
+        ]
+    },
+    {
+        "name": "King",
+        "suit": "spade",
+        "color": "red",
+        "value": [
+            10
+        ]
+    }
+]
