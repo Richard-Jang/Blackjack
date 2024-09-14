@@ -11,7 +11,7 @@ def create_card(name, suit, color, value):
 	return card
 
 # Define suits and a data placeholder
-suits = ["club", "diamond", "heart", "spade"]
+suits = ["Clubs", "Diamonds", "Hearts", "Spades"]
 data = []
 
 # Iterate over every suit and every card
