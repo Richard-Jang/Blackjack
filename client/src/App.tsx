@@ -11,7 +11,7 @@ function App() {
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
       </div>
-      <h1>I FUCKING LOVE GAMBLING!11!!!11!1</h1>
+      <h1></h1>
     </>
   )
 }
