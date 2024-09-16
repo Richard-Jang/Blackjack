@@ -8,9 +8,12 @@ from flask_cors import CORS
 dealer = []
 dealer_total = 0
 dealer_paths = []
+dealer_aces = []
 player = []
 player_total = 0
 player_paths = []
+player_aces = []
+values = []
 action = ""
 winner = ""
 
@@ -34,7 +37,17 @@ def random_number(lower: int = 0, upper: int = 0, exclude: list = []):
 
 # Deal 2 cards to the player and the dealer
 def initial_deal():
-    global player, dealer, player_total, dealer_total, dealer_paths, player_paths
+    global player, dealer, player_total, dealer_total, dealer_paths, player_paths, winner, action, player_aces, values
+    dealer = []
+    dealer_total = 0
+    dealer_paths = []
+    player = []
+    player_total = 0
+    player_paths = []
+    player_aces = []
+    values = []
+    winner = ""
+    action = ""
     for i in range(0, 2):
         num = random_number(0, len(data) - 1, dealer + player)
         dealer.append(num)
@@ -50,19 +63,14 @@ def initial_deal():
 
 # Adds all the values and updates respective totals
 # Key of value must contain an array with value of card at index 0
-def update_totals(without_aces = False):
+def update_totals():
     global dealer_total, player_total
     dealer_total = 0
     player_total = 0
     for card in dealer:
         dealer_total += data[card]['value'][0]
-    if not without_aces:
-        for card in player:
-            player_total += data[card]['value'][0]
-    else:
-        for card in player:
-            if data[card]['name'] != 'Ace':
-                player_total += data[card]['value'][0]
+    for card in player:
+        player_total += data[card]['value'][0]
 
 # Draws a card for the player
 def hit():
@@ -70,8 +78,6 @@ def hit():
     num = random_number(0, len(data) - 1, player + dealer)
     player.append(num)
     player_paths.append(data[num]['path'])
-    update_totals(True)
-    choose_ace_values()
     update_totals()
     if player_total > 21:
         bust(player)
@@ -85,20 +91,20 @@ def bust(hand: list):
         winner = "player"
     get_data()
 
-# Allow player to update ace values
-def choose_ace_values():
+# Resets the ace values
+def init_aces():
+    global player_aces
+    player_aces = []
     for card in player:
         if data[card]["name"] == "Ace":
-            valid = True
-            while valid:
-                option = "1"
-                match option:
-                    case "1":
-                        data[card]['value'] = [1]
-                        valid = False
-                    case "11":
-                        data[card]['value'] = [11]
-                        valid = False
+            player_aces.append(card)
+            values.append(1)
+
+# Allow player to update ace values
+def choose_ace_values():
+    global player_aces, values
+    for count in range(0, len(player_aces)):
+        data[player_aces[count]]['value'] = [values[count]]
         update_totals()
 
 # End player's turn, dealer deal to at least 17
@@ -133,8 +139,9 @@ def num_aces(hand: list):
 
 def execute_action():
     match action:
-        case "":
+        case "initial":
             initial_deal()
+            init_aces()
             update_totals()
         case "hit":
             hit()
@@ -157,27 +164,35 @@ def handle_data():
         return get_data()
 
 def receive_data():
-    global action, player, dealer, player_total, dealer_total
+    global action, player, dealer, player_total, dealer_total, player_aces, values
     # Recieve data from client
     data_r = request.json
     action = data_r['data']['action']
+    if data_r['data']['aces'] != []:
+        values = data_r['data']['aces']['values']
+        player_aces = data_r['data']['aces']['cards']
     execute_action()
     return jsonify({"message": "Data received successfully"})
 
 
 def get_data():
-    # print("sent " + str(player_total) + winner)
     return jsonify(
         {
             "dealer": {
                 "hand": dealer,
                 "paths": dealer_paths,
+                "aces": dealer_aces,
                 "total": dealer_total,
             },
             "player": {
                 "hand": player,
                 "paths": player_paths,
+                "aces": player_aces,
                 "total": player_total,
+            },
+            "aces": {
+                "cards": player_aces,
+                "values": values
             },
             "action": "",
             "winner": winner,

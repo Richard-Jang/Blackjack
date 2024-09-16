@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import viteLogo from './assets/icon.png'
 import './App.css'
 import axios from 'axios';
+import data from './assets/cards.json';
 
 interface actor {
   hand: [],
   paths: [],
+  aces: [],
   total: number,
 }
 
@@ -14,6 +16,10 @@ function App() {
   const [dealer, setDealer] = useState<actor>();
   const [action, setAction] = useState<string>("");
   const [hasStand, setHasStand] = useState<boolean>(false);
+  const [aces, setAces] = useState<Array<number>>([]);
+  const [acesPresent, setAcesPresent] = useState<boolean>(false);
+  const [values, setValues] = useState<Array<number>>([]);
+  const [acesModalOpen, setAcesModalOpen] = useState<boolean>(false);
   const [triggerEffect, setTriggerEffect] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [winner, setWinner] = useState<string>("");
@@ -41,6 +47,7 @@ function App() {
         body: JSON.stringify({ data: {
           "player": player,
           "dealer": dealer,
+          "aces": aces,
           "action": action,
           "winner": "",
         }}),
@@ -52,16 +59,21 @@ function App() {
   }
 
   useEffect(() => {
-    setAction("");
+    setAction("initial");
     setTriggerEffect(true);
     const initGame = async () => {
       const initialData = await fetchAPI();
       if (initialData) {
         setPlayer(initialData.player);
         setDealer(initialData.dealer);
+        setAces(initialData.aces);
+        setValues(initialData.values);
       }
     };
     initGame();
+    for (const card in player?.hand) {
+      if (data[card].name == "Ace") setAcesPresent(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -73,6 +85,8 @@ function App() {
           setPlayer(newData.player);
           setDealer(newData.dealer);
           setAction(newData.action);
+          setAces(newData.aces);
+          setValues(newData.values);
           setGameOver((newData.winner == "player") || (newData.winner == "dealer"));
           setWinner(newData.winner);
         }
@@ -94,12 +108,50 @@ function App() {
   }
   
   function handleAces() {
+    setAcesModalOpen(true);
     setAction("aces");
     setTriggerEffect(true);
   }
 
+  function handleReset() {
+    window.location.reload();
+  }
+
   return (
     <>
+      {!acesModalOpen ? (<></>) : (
+        <div className="w-screen h-screen absolute absolute z-10 inset-0 backdrop-opacity-10 bg-black/60 transition-all flex items-center justify-center">
+          <div className="w-4/6 h-4/6 flex flex-col bg-zinc-900 rounded-lg p-4 gap-4">
+            <div className="w-full flex justify-end">
+              <button className="btn bg-transparent hover:bg-transparent hover:bg-zinc-950 h-fit w-fit border-0 text-4xl" onClick={() => {setAcesModalOpen(false)}}>X</button>
+            </div>
+            <div>
+              {Object.entries(aces)[0][1].map((card, index) => {
+                return <div className="w-full flex justify-between">
+                  <div className="text-4xl">{data[card].name} of {data[card].suit.substring(0, 1).toUpperCase() + data[card].suit.substring(1)}</div>
+                  <div className="flex gap-4">
+                    <button className="btn" onClick={() => {
+                      const temp = aces;
+                      temp.values[index] = 1;
+                      setAces(temp);
+                      setAction("aces");
+                      setTriggerEffect(true);
+                      }}>1</button>
+                    <button className="btn" onClick={() => {
+                      const temp = aces;
+                      temp.values[index] = 11;
+                      setAces(temp);
+                      setAction("aces");
+                      setTriggerEffect(true);
+                      }}>11</button>
+                  </div>
+                </div>
+              })}
+            </div>
+            <div className="w-full"></div>
+          </div>
+        </div>
+      )}
       <div className="w-screen h-screen flex">
         <div className="w-1/4 h-full bg-gray-700 font-serif flex flex-col justify-center items-center p-4">
           <div className="w-full">
@@ -111,10 +163,10 @@ function App() {
           <div className="w-full flex-grow flex flex-col items-center justify-center gap-4">
             <button className={`w-9/12 h-fit text-3xl btn ${gameOver ? "btn-disabled" : ""}`} onClick={handleHit}>Hit</button>
             <button className={`w-9/12 h-fit text-3xl btn ${gameOver ? "btn-disabled" : ""}`} onClick={handleStand}>Stand</button>
-            <button className={`w-9/12 h-fit text-3xl btn ${gameOver ? "btn-disabled" : ""}`} onClick={handleAces}>Aces</button>
+            <button className={`w-9/12 h-fit text-3xl btn ${gameOver || acesPresent ? "btn-disabled" : ""}`} onClick={handleAces}>Aces</button>
           </div>
           <div className="w-full flex justify-center">
-            <button className="w-8/12 h-fit btn text-2xl flex items-center justify-center bg-green-900 hover:bg-green-950 border-0">Gamble More</button>
+            <button className="w-8/12 h-fit btn text-2xl flex items-center justify-center bg-green-900 hover:bg-green-950 border-0" onClick={handleReset}>Gamble More</button>
           </div>
         </div>
         <div className="w-3/4 h-full flex flex-col items-center justify-between p-4 gap-3">
