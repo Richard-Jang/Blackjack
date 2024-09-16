@@ -7,8 +7,10 @@ from flask_cors import CORS
 # Hands and totals of the dealer and the player
 dealer = []
 dealer_total = 0
+dealer_paths = []
 player = []
 player_total = 0
+player_paths = []
 action = ""
 winner = ""
 
@@ -32,16 +34,18 @@ def random_number(lower: int = 0, upper: int = 0, exclude: list = []):
 
 # Deal 2 cards to the player and the dealer
 def initial_deal():
-    global player, dealer, player_total, dealer_total
+    global player, dealer, player_total, dealer_total, dealer_paths, player_paths
     for i in range(0, 2):
         num = random_number(0, len(data) - 1, dealer + player)
         dealer.append(num)
+        dealer_paths.append(data[num]['path'])
         if data[dealer[i]]["name"] == "Ace":
             dealer_total += data[dealer[i]]["value"][random_number(0, 1)]
         else:
             dealer_total += data[dealer[i]]["value"][0]
         num = random_number(0, len(data) - 1, dealer + player)
         player.append(num)
+        player_paths.append(data[num]['path'])
         player_total += data[player[i]]["value"][0]
 
 # Adds all the values and updates respective totals
@@ -62,7 +66,10 @@ def update_totals(without_aces = False):
 
 # Draws a card for the player
 def hit():
-    player.append(random_number(0, len(data) - 1, player + dealer))
+    global player, player_paths
+    num = random_number(0, len(data) - 1, player + dealer)
+    player.append(num)
+    player_paths.append(data[num]['path'])
     update_totals(True)
     choose_ace_values()
     update_totals()
@@ -96,7 +103,14 @@ def choose_ace_values():
 
 # End player's turn, dealer deal to at least 17
 def stand():
-    global player_total, dealer_total, dealer, winner
+    global player_total, dealer_total, dealer, winner, dealer_paths
+    while dealer_total < 17:
+        num = random_number(0, len(data) - 1, player + dealer)
+        dealer.append(num)
+        dealer_paths.append(data[num]['path'])
+        update_totals()
+        get_data()
+        time.sleep(0.5)
     if dealer_total > 21:
         bust(dealer)
     elif dealer_total >= 17:
@@ -107,12 +121,7 @@ def stand():
         else:
             winner = "tie"
             get_data()
-    else:
-        while not (dealer_total >= 17 and dealer_total < 21):
-            dealer.append(random_number(0, len(data) - 1, player + dealer))
-            update_totals()
-            print(dealer_total, dealer)
-            get_data()
+            
 
 # Counts the number of aces in a given hand
 def num_aces(hand: list):
@@ -162,11 +171,13 @@ def get_data():
         {
             "dealer": {
                 "hand": dealer,
+                "paths": dealer_paths,
                 "total": dealer_total,
             },
             "player": {
                 "hand": player,
-                "total": player_total
+                "paths": player_paths,
+                "total": player_total,
             },
             "action": "",
             "winner": winner,

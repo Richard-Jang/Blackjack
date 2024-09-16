@@ -1,422 +1,474 @@
 [
     {
         "name": "Ace",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             1,
             11
-        ]
+        ],
+        "path": "ace_of_clubs.svg"
     },
     {
         "name": "2",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             2
-        ]
+        ],
+        "path": "2_of_clubs.svg"
     },
     {
         "name": "3",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             3
-        ]
+        ],
+        "path": "3_of_clubs.svg"
     },
     {
         "name": "4",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             4
-        ]
+        ],
+        "path": "4_of_clubs.svg"
     },
     {
         "name": "5",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             5
-        ]
+        ],
+        "path": "5_of_clubs.svg"
     },
     {
         "name": "6",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             6
-        ]
+        ],
+        "path": "6_of_clubs.svg"
     },
     {
         "name": "7",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             7
-        ]
+        ],
+        "path": "7_of_clubs.svg"
     },
     {
         "name": "8",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             8
-        ]
+        ],
+        "path": "8_of_clubs.svg"
     },
     {
         "name": "9",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             9
-        ]
+        ],
+        "path": "9_of_clubs.svg"
     },
     {
         "name": "10",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             10
-        ]
+        ],
+        "path": "10_of_clubs.svg"
     },
     {
         "name": "Jack",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             10
-        ]
+        ],
+        "path": "jack_of_clubs.svg"
     },
     {
         "name": "Queen",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             10
-        ]
+        ],
+        "path": "queen_of_clubs.svg"
     },
     {
         "name": "King",
-        "suit": "Clubs",
-        "color": "red",
+        "suit": "clubs",
+        "color": "black",
         "value": [
             10
-        ]
+        ],
+        "path": "king_of_clubs.svg"
     },
     {
         "name": "Ace",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             1,
             11
-        ]
+        ],
+        "path": "ace_of_diamonds.svg"
     },
     {
         "name": "2",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             2
-        ]
+        ],
+        "path": "2_of_diamonds.svg"
     },
     {
         "name": "3",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             3
-        ]
+        ],
+        "path": "3_of_diamonds.svg"
     },
     {
         "name": "4",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             4
-        ]
+        ],
+        "path": "4_of_diamonds.svg"
     },
     {
         "name": "5",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             5
-        ]
+        ],
+        "path": "5_of_diamonds.svg"
     },
     {
         "name": "6",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             6
-        ]
+        ],
+        "path": "6_of_diamonds.svg"
     },
     {
         "name": "7",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             7
-        ]
+        ],
+        "path": "7_of_diamonds.svg"
     },
     {
         "name": "8",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             8
-        ]
+        ],
+        "path": "8_of_diamonds.svg"
     },
     {
         "name": "9",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             9
-        ]
+        ],
+        "path": "9_of_diamonds.svg"
     },
     {
         "name": "10",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             10
-        ]
+        ],
+        "path": "10_of_diamonds.svg"
     },
     {
         "name": "Jack",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             10
-        ]
+        ],
+        "path": "jack_of_diamonds.svg"
     },
     {
         "name": "Queen",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             10
-        ]
+        ],
+        "path": "queen_of_diamonds.svg"
     },
     {
         "name": "King",
-        "suit": "Diamonds",
+        "suit": "diamonds",
         "color": "red",
         "value": [
             10
-        ]
+        ],
+        "path": "king_of_diamonds.svg"
     },
     {
         "name": "Ace",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             1,
             11
-        ]
+        ],
+        "path": "ace_of_hearts.svg"
     },
     {
         "name": "2",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             2
-        ]
+        ],
+        "path": "2_of_hearts.svg"
     },
     {
         "name": "3",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             3
-        ]
+        ],
+        "path": "3_of_hearts.svg"
     },
     {
         "name": "4",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             4
-        ]
+        ],
+        "path": "4_of_hearts.svg"
     },
     {
         "name": "5",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             5
-        ]
+        ],
+        "path": "5_of_hearts.svg"
     },
     {
         "name": "6",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             6
-        ]
+        ],
+        "path": "6_of_hearts.svg"
     },
     {
         "name": "7",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             7
-        ]
+        ],
+        "path": "7_of_hearts.svg"
     },
     {
         "name": "8",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             8
-        ]
+        ],
+        "path": "8_of_hearts.svg"
     },
     {
         "name": "9",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             9
-        ]
+        ],
+        "path": "9_of_hearts.svg"
     },
     {
         "name": "10",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             10
-        ]
+        ],
+        "path": "10_of_hearts.svg"
     },
     {
         "name": "Jack",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             10
-        ]
+        ],
+        "path": "jack_of_hearts.svg"
     },
     {
         "name": "Queen",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             10
-        ]
+        ],
+        "path": "queen_of_hearts.svg"
     },
     {
         "name": "King",
-        "suit": "Hearts",
+        "suit": "hearts",
         "color": "red",
         "value": [
             10
-        ]
+        ],
+        "path": "king_of_hearts.svg"
     },
     {
         "name": "Ace",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             1,
             11
-        ]
+        ],
+        "path": "ace_of_spades.svg"
     },
     {
         "name": "2",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             2
-        ]
+        ],
+        "path": "2_of_spades.svg"
     },
     {
         "name": "3",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             3
-        ]
+        ],
+        "path": "3_of_spades.svg"
     },
     {
         "name": "4",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             4
-        ]
+        ],
+        "path": "4_of_spades.svg"
     },
     {
         "name": "5",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             5
-        ]
+        ],
+        "path": "5_of_spades.svg"
     },
     {
         "name": "6",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             6
-        ]
+        ],
+        "path": "6_of_spades.svg"
     },
     {
         "name": "7",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             7
-        ]
+        ],
+        "path": "7_of_spades.svg"
     },
     {
         "name": "8",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             8
-        ]
+        ],
+        "path": "8_of_spades.svg"
     },
     {
         "name": "9",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             9
-        ]
+        ],
+        "path": "9_of_spades.svg"
     },
     {
         "name": "10",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             10
-        ]
+        ],
+        "path": "10_of_spades.svg"
     },
     {
         "name": "Jack",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             10
-        ]
+        ],
+        "path": "jack_of_spades.svg"
     },
     {
         "name": "Queen",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             10
-        ]
+        ],
+        "path": "queen_of_spades.svg"
     },
     {
         "name": "King",
-        "suit": "Spades",
-        "color": "red",
+        "suit": "spades",
+        "color": "black",
         "value": [
             10
-        ]
+        ],
+        "path": "king_of_spades.svg"
     }
 ]

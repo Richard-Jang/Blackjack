@@ -5,6 +5,7 @@ import axios from 'axios';
 
 interface actor {
   hand: [],
+  paths: [],
   total: number,
 }
 
@@ -12,6 +13,7 @@ function App() {
   const [player, setPlayer] = useState<actor>();
   const [dealer, setDealer] = useState<actor>();
   const [action, setAction] = useState<string>("");
+  const [hasStand, setHasStand] = useState<boolean>(false);
   const [triggerEffect, setTriggerEffect] = useState<boolean>(false);
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [winner, setWinner] = useState<string>("");
@@ -43,13 +45,12 @@ function App() {
           "winner": "",
         }}),
       });
-      // const result = await response.json();
-      // console.log(result);
+      console.log(response)
     } catch (error) {
       console.error("Error sending data: " + error);
     }
   }
-  
+
   useEffect(() => {
     setAction("");
     setTriggerEffect(true);
@@ -73,13 +74,12 @@ function App() {
           setDealer(newData.dealer);
           setAction(newData.action);
           setGameOver((newData.winner == "player") || (newData.winner == "dealer"));
-          if (gameOver) setWinner(newData.winner);
+          setWinner(newData.winner);
         }
         setTriggerEffect(false);
       };
       updateGameState();
     }
-    console.log(gameOver);
   }, [triggerEffect]);
 
   function handleHit() {
@@ -89,6 +89,7 @@ function App() {
   
   function handleStand() {
     setAction("stand");
+    setHasStand(true);
     setTriggerEffect(true);
   }
   
@@ -99,44 +100,80 @@ function App() {
 
   return (
     <>
-
-      <div className='fixed left-0 top-0 bg-gray-700 w-[25%] h-screen flex flex-col items-center justify-center space-y-4 font-serif'>
-        <div className='fixed top-8 text-white font-serif md:text-3xl lg:text-4xl lg:tracking-widest'>
-          BLACKJACK
+      <div className="w-screen h-screen flex">
+        <div className="w-1/4 h-full bg-gray-700 font-serif flex flex-col justify-center items-center p-4">
+          <div className="w-full">
+            <h1 className="text-4xl text-white tracking-widest text-center">BLACKJACK</h1>
+            <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/#:~:text=1%2D800%2DGAMBLER%20is%20the,the%20National%20Problem%20Gambling%20Helpline." target="_blank" className='flex justify-center'>
+              <img src={viteLogo} className="logo p-4" alt="Vite logo" />
+            </a>
+          </div>
+          <div className="w-full flex-grow flex flex-col items-center justify-center gap-4">
+            <button className={`w-9/12 h-fit text-3xl btn ${gameOver ? "btn-disabled" : ""}`} onClick={handleHit}>Hit</button>
+            <button className={`w-9/12 h-fit text-3xl btn ${gameOver ? "btn-disabled" : ""}`} onClick={handleStand}>Stand</button>
+            <button className={`w-9/12 h-fit text-3xl btn ${gameOver ? "btn-disabled" : ""}`} onClick={handleAces}>Aces</button>
+          </div>
+          <div className="w-full flex justify-center">
+            <button className="w-8/12 h-fit btn text-2xl flex items-center justify-center bg-green-900 hover:bg-green-950 border-0">Gamble More</button>
+          </div>
         </div>
-
-        <a href="https://www.ncpgambling.org/help-treatment/about-the-national-problem-gambling-helpline/#:~:text=1%2D800%2DGAMBLER%20is%20the,the%20National%20Problem%20Gambling%20Helpline." target="_blank" className='flex justify-center'>
-          <img src={viteLogo} className="fixed top-20 logo" alt="Vite logo" />
-        </a>
-
-        <div className='flex flex-col space-y-16 '>
-          <button className='btn lg:btn-wide font-light md:text-xl lg:text-2xl btn-xs sm:btn-sm md:btn-md lg:btn-lg'>
-            Hit
-          </button>
-
-          <button className='btn lg:btn-wide font-light md:text-xl lg:text-2xl btn-xs sm:btn-sm md:btn-md lg:btn-lg'>
-            Stand
-          </button>
-        </div>
-      </div>
-
-      <div className='fixed right-0 top-0 text-white w-[75%] h-screen flex justify-center items-center'>
-        <div className='flex justify-center items-center w-[15rem] h-[7.5rem] md:w-[30rem] md:h-[15rem] lg:w-[60rem] lg:h-[30rem] rounded-full bg-[#583927]'>
-          <div className='flex justify-center items-center w-[95%] h-[92.5%] rounded-full bg-[#d4af37]'>
-            <div className='flex justify-center items-center w-[95%] h-[95%] rounded-full bg-green-900'>
-              <div className='flex flex-row justify-center items-center w-[75%] h-[72.5%] rounded-full border-2 border-white space-x-1 md:space-x-3'>
-                <div className='w-[1.25rem] md:w-[2.5rem] lg:w-[5rem] h-[50%] rounded-lg border-2 border-white'>
-                </div>
-                <div className='w-[1.25rem] md:w-[2.5rem] lg:w-[5rem] h-[50%] rounded-lg border-2 border-white'>
-                </div>
-                <div className='w-[1.25rem] md:w-[2.5rem] lg:w-[5rem] h-[50%] rounded-lg border-2 border-white'>
-                </div>
-                <div className='w-[1.25rem] md:w-[2.5rem] lg:w-[5rem] h-[50%] rounded-lg border-2 border-white'>
-                </div>
-                <div className='w-[1.25rem] md:w-[2.5rem] lg:w-[5rem] h-[50%] rounded-lg border-2 border-white'>
+        <div className="w-3/4 h-full flex flex-col items-center justify-between p-4 gap-3">
+          <div className="w-full flex flex-col items-center justify-center gap-3">
+            <h1 className="text-4xl font-serif">Dealer's Cards</h1>
+            <div className="flex gap-2">
+              {dealer?.paths.map((path, index) => {
+                if (!gameOver && (index == dealer.paths.length - 1) && !hasStand) {
+                  return <>
+                  <div key={index}>
+                    <img className="w-28 h-auto" src={"/Card_back_01.svg"} />
+                  </div>
+                </>
+                } else {
+                  return <>
+                  <div key={index}>
+                    <img className="w-28 h-auto" src={"/SVG-cards-1.3/" + path} />
+                  </div>
+                </>
+                }
+              })}
+            </div>
+          </div>
+          <div className="w-10/12 h-3/6 rounded-full bg-[#583927] flex items-center justify-center px-8 py-4">
+            <div className="w-full h-full rounded-full bg-[#d4af37] flex items-center justify-center px-8 py-4">
+              <div className="w-full h-full rounded-full bg-green-900 flex items-center justify-center p-4">
+                <div className={`w-11/12 h-5/6 rounded-full border border-4 flex ${gameOver ? "flex-col" : ""} items-center justify-center gap-3 p-8 font-serif`}>
+                  {!gameOver ? (
+                    <>
+                      <div className="h-5/6 w-[15%] border border-4 rounded-lg"></div>
+                      <div className="h-5/6 w-[15%] border border-4 rounded-lg"></div>
+                      <div className="h-5/6 w-[15%] border border-4 rounded-lg"></div>
+                      <div className="h-5/6 w-[15%] border border-4 rounded-lg"></div>
+                      <div className="h-5/6 w-[15%] border border-4 rounded-lg"></div>
+                    </>
+                  ) : (
+                    <>
+                      <h1 className="text-7xl text-bold my-5">{winner.substring(0, 1).toUpperCase() + winner.substring(1)} wins!</h1>
+                      <h3 className="text-2xl my-2">Player's total: {player?.total}</h3>
+                      <h3 className="text-2xl my-2">Dealer's total: {dealer?.total}</h3>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
+          </div>
+          <div className="w-full flex flex-col items-center justify-center gap-3">
+            <div className="flex gap-2">
+              {player?.paths.map((path, index) => {
+                return <>
+                  <div key={index}>
+                    <img className="w-28 h-auto" src={"/SVG-cards-1.3/" + path} />
+                  </div>
+                </>
+              })}
+            </div>
+            <h1 className="text-4xl font-serif">
+              Player's Cards
+            </h1>
           </div>
         </div>
       </div>
