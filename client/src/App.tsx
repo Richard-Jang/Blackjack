@@ -10,6 +10,12 @@ interface actor {
   aces: [],
   total: number,
 }
+
+interface ace {
+  cards: [],
+  values: [],
+}
+
 function App() {  
 
   const [money, setMoney] = useState(0);
@@ -18,7 +24,7 @@ function App() {
   const [dealer, setDealer] = useState<actor>();
   const [action, setAction] = useState<string>("");
   const [hasStand, setHasStand] = useState<boolean>(false);
-  const [aces, setAces] = useState<Array<number>>([]);
+  const [aces, setAces] = useState<ace>({cards: [], values: []});
   const [acesPresent, setAcesPresent] = useState<boolean>(false);
   const [values, setValues] = useState<Array<number>>([]);
   const [acesModalOpen, setAcesModalOpen] = useState<boolean>(false);
@@ -54,7 +60,7 @@ function App() {
           "winner": "",
         }}),
       });
-      console.log(response)
+      console.log(response);
     } catch (error) {
       console.error("Error sending data: " + error);
     }
@@ -85,12 +91,12 @@ function App() {
       }
     };
     initGame();
-    for (const card in player?.hand) {
-      if (data[card].name == "Ace") setAcesPresent(true);
-    }
   }, []);
-
+  
   useEffect(() => {
+    if (aces.cards.length as number != 0) {
+      setAcesPresent(true);
+    }
     if (triggerEffect) {
       const updateGameState = async () => {
         await sendAPI();
@@ -103,7 +109,7 @@ function App() {
           setValues(newData.values);
           setGameOver((newData.winner == "player") || (newData.winner == "dealer"));
           setWinner(newData.winner);
-
+          
           {/*Player gains money if they win or lose money if dealer wins*/}
           if (newData.winner == 'player') {
             const newMoney = money + bet;
@@ -150,7 +156,7 @@ function App() {
   return (
     <>
       {!acesModalOpen ? (<></>) : (
-        <div className="w-screen h-screen absolute absolute z-10 inset-0 backdrop-opacity-10 bg-black/60 transition-all flex items-center justify-center">
+        <div className="w-screen h-screen absolute z-10 inset-0 backdrop-opacity-10 bg-black/60 transition-all flex items-center justify-center">
           <div className="w-4/6 h-4/6 flex flex-col bg-zinc-900 rounded-lg p-4 gap-4">
             <div className="w-full flex justify-end">
               <button className="btn bg-transparent hover:bg-transparent hover:bg-zinc-950 h-fit w-fit border-0 text-4xl" onClick={() => {setAcesModalOpen(false)}}>X</button>
@@ -193,7 +199,7 @@ function App() {
           <div className="w-full flex-grow flex flex-col items-center justify-center gap-4">
             <button className={`w-9/12 h-fit text-3xl btn ${gameOver ? "btn-disabled" : ""}`} onClick={handleHit}>Hit</button>
             <button className={`w-9/12 h-fit text-3xl btn ${gameOver ? "btn-disabled" : ""}`} onClick={handleStand}>Stand</button>
-            <button className={`w-9/12 h-fit text-3xl btn ${gameOver || acesPresent ? "btn-disabled" : ""}`} onClick={handleAces}>Aces</button>
+            <button className={`w-9/12 h-fit text-3xl btn ${gameOver || !acesPresent ? "btn-disabled" : ""}`} onClick={handleAces}>Aces</button>
 
             <button className='btn' onClick={()=>document.getElementById('tutorial').showModal()}>How to Play</button>
             <dialog id='tutorial' className='modal'>
