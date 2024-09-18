@@ -137,6 +137,7 @@ def num_aces(hand: list):
             aces += 1
     return aces
 
+# Executes a function based off the action received
 def execute_action():
     match action:
         case "initial":

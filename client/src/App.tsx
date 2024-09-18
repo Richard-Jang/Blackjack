@@ -4,6 +4,7 @@ import './App.css'
 import axios from 'axios';
 import data from './assets/cards.json';
 
+// Create types for data received from server
 interface actor {
   hand: [],
   paths: [],
@@ -17,7 +18,7 @@ interface ace {
 }
 
 function App() {  
-
+  // Create state variables to hold and manipulate the information client side
   const [money, setMoney] = useState(0);
   const [bet, setBet] = useState(100);
   const [player, setPlayer] = useState<actor>();
@@ -32,6 +33,7 @@ function App() {
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [winner, setWinner] = useState<string>("");
 
+  // Get data from the server
   const fetchAPI = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api/data", {
@@ -45,6 +47,7 @@ function App() {
     }
   };
 
+  // Send data to the server
   const sendAPI = async () => {
     try {
       const response = await fetch('http://localhost:8080/api/data', {
@@ -66,19 +69,20 @@ function App() {
     }
   }
 
-  {/*Tracks player's money, uses sessionStorage so it saves even when tab is refreshed*/}
+  // Tracks player's money, uses sessionStorage so it saves even when tab is refreshed
   useEffect(() => {
     const storedMoney = sessionStorage.getItem('Money')
     if (storedMoney != null) {
       setMoney(Number(storedMoney))
     }
 
-    {/*Sends player to gambling hotline if they gamble too much*/ }
+  // Sends player to gambling hotline if they gamble too much
     if (money > 10000 || money < -10000) {
       window.open('https://www.ncpgambling.org/help-treatment/', '_blank')
     }
   })
 
+  // Send calls to server on initial render and receive initial game state
   useEffect(() => {
     setAction("initial");
     setTriggerEffect(true);
@@ -94,6 +98,7 @@ function App() {
     initGame();
   }, []);
   
+  // Update game states on action
   useEffect(() => {
     if (aces.cards.length as number != 0) {
       setAcesPresent(true);
@@ -128,32 +133,32 @@ function App() {
     }
   }, [triggerEffect]);
 
-  {/*Function that handles whenever player decides to hit*/}
+  // Function that handles whenever player decides to hit
   function handleHit() {
     setAction("hit");
     setTriggerEffect(true);
   }
   
-  {/*Function that handles whenever player decides to stand*/}
+  // Function that handles whenever player decides to stand
   function handleStand() {
     setAction("stand");
     setHasStand(true);
     setTriggerEffect(true);
   }
   
-  {/*Function that handles whenever player has an Ace in their hand*/}
+  // Function that handles whenever player has an Ace in their hand
   function handleAces() {
     setAcesModalOpen(true);
     setAction("aces");
     setTriggerEffect(true);
   }
 
-  {/*Function that handles resetting the game*/}
+  // Function that handles resetting the game
   function handleReset() {
     window.location.reload();
   }
 
-  {/*Code below is the actual website itself*/}
+  // Front end of the website
   return (
     <>
       {!acesModalOpen ? (<></>) : (
