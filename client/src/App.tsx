@@ -72,6 +72,7 @@ function App() {
     if (storedMoney != null) {
       setMoney(Number(storedMoney))
     }
+
     {/*Sends player to gambling hotline if they gamble too much*/ }
     if (money > 10000 || money < -10000) {
       window.open('https://www.ncpgambling.org/help-treatment/', '_blank')
@@ -196,11 +197,14 @@ function App() {
               <img src={viteLogo} className="logo p-4" alt="Vite logo" />
             </a>
           </div>
+
+          {/* Player actions */}
           <div className="w-full flex-grow flex flex-col items-center justify-center gap-4">
             <button className={`w-9/12 h-fit text-3xl btn ${gameOver ? "btn-disabled" : ""}`} onClick={handleHit}>Hit</button>
             <button className={`w-9/12 h-fit text-3xl btn ${gameOver ? "btn-disabled" : ""}`} onClick={handleStand}>Stand</button>
             <button className={`w-9/12 h-fit text-3xl btn ${gameOver || !acesPresent ? "btn-disabled" : ""}`} onClick={handleAces}>Aces</button>
 
+            {/* Tutorial button and popup */}
             <button className='btn' onClick={()=>document.getElementById('tutorial').showModal()}>How to Play</button>
             <dialog id='tutorial' className='modal'>
               <div className="modal-box">
@@ -218,6 +222,7 @@ function App() {
               </div>
             </dialog>
 
+            {/* Admin panel button and popup */}
             <button className='btn' onClick={() => document.getElementById('debug').showModal()}>Admin Panel</button>
             <dialog id='debug' className='modal'>
               <div className="modal-box">
@@ -231,7 +236,6 @@ function App() {
                     value={money}
                     onChange={(event) => {setMoney(event.target.value);sessionStorage.setItem('Money', event.target.value)}}>
                   </input>
-
                 </div>
                 <div className="modal-action">
                   <form method="dialog">
@@ -242,16 +246,20 @@ function App() {
             </dialog>
           </div>
 
+          {/* Button that restarts the game */}
           <div className="w-full flex justify-center">
             <button className="w-8/12 h-fit btn text-2xl text-white flex items-center justify-center bg-green-900 hover:bg-green-950 border-0" onClick={handleReset}>Gamble More</button>
           </div>
         </div>
+
+        {/* Shows how much money the player has */}
         <div className="w-3/4 h-full flex flex-col items-center justify-between p-4 gap-3">
           <div className="w-full flex flex-col items-center justify-center gap-3">
             <div className='fixed items-start font-serif w-[75%] top-0 p-4'>
               <h2>Balance: ${money}</h2>
             </div>
 
+            {/* Dropdown menu that allows the player to select how much they want to bet */}
             <div className='fixed items-start font-serif w-[75%] bottom-0 p-4 flex flex-row space-x-2 flex items-center'>
               <h2>Betting: $</h2>
               <div className="dropdown dropdown-right dropdown-end bg-opacity-0">
@@ -267,6 +275,7 @@ function App() {
               </div>
             </div>
 
+            {/* Responsible for showing dealer's and player's cards */}
             <h1 className="text-4xl font-serif">Dealer's Cards</h1>
             <div className="flex gap-2">
               {dealer?.paths.map((path, index) => {
