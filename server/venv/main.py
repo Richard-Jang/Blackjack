@@ -1,3 +1,5 @@
+# Code by Darrion Nguyen, Hannah Seo, and Richard Jang
+
 import random
 import json
 import time

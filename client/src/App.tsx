@@ -1,3 +1,5 @@
+// Code by Darrion Nguyen, Hannah Seo, and Richard Jang
+
 import { useState, useEffect } from 'react'
 import viteLogo from './assets/icon.png'
 import './App.css'
